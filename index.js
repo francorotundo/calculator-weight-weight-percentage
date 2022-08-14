@@ -62,3 +62,65 @@ function renderCalcPPP() {
 }
 
 renderCalcPPP()
+
+const btn = document.querySelector(".calcular");
+
+btn.addEventListener("click", calculoPorcentajePP);
+
+function calculoPorcentajePP(){
+    let gramoSoluto = document.querySelector(".sto");
+    let gramoSolvente = document.querySelector(".solvente");
+    let gramoSolucion = document.querySelector(".solucion");
+    let porcentajePPSoluto = document.querySelector(".porcentajeSoluto");
+    let porcentajePPSolvente = document.querySelector(".porcentajeSolvente");
+
+    if (porcentajePPSoluto.value == "" && porcentajePPSolvente != "") {
+        porcentajePPSoluto.value = 100 - parseFloat(porcentajePPSolvente.value);
+    }
+
+    if (gramoSolucion.value == "" && gramoSoluto.value != "" && gramoSolvente.value != "") {
+        gramoSolucion.value = (parseFloat(gramoSolvente.value) + parseFloat(gramoSoluto.value))
+    }
+
+    if (gramoSoluto.value == "" && gramoSolvente.value == "") {
+        gramoSoluto.value = (parseFloat(gramoSolucion.value)*parseFloat(porcentajePPSoluto.value))/100; 
+        gramoSolvente.value = (parseFloat(gramoSolucion.value) - parseFloat(gramoSoluto.value));
+    }
+
+    if (gramoSoluto.value == "") {
+        gramoSoluto.value = (parseFloat(porcentajePPSoluto.value)*parseFloat(gramoSolvente.value))/(100 - parseFloat(porcentajePPSoluto.value)); 
+    }
+
+    if (gramoSolvente.value == "") {
+        gramoSolvente.value = (parseFloat(gramoSoluto.value)*(100/porcentajePPSoluto.value))-parseFloat(gramoSoluto.value); 
+    }
+
+    if (gramoSolucion.value == "") {
+        gramoSolucion.value = (parseFloat(gramoSoluto.value)*100)/parseFloat(porcentajePPSoluto.value); 
+    }
+    
+    if (porcentajePPSoluto.value == "") {
+        porcentajePPSoluto.value = (parseFloat(gramoSoluto.value)*100)/parseFloat(gramoSolucion.value);
+    }
+
+    if (porcentajePPSolvente.value == "") {
+        porcentajePPSolvente.value = 100 - parseFloat(porcentajePPSoluto.value);
+    }
+}
+
+const btn2 = document.querySelector(".clear");
+
+btn2.addEventListener("click", clear);
+function clear() {
+    let gramoSoluto = document.querySelector(".sto");
+    let gramoSolucion = document.querySelector(".solucion");
+    let gramoSolvente = document.querySelector(".solvente");
+    let porcentajePPSoluto = document.querySelector(".porcentajeSoluto");
+    let porcentajePPSolvente = document.querySelector(".porcentajeSolvente");
+
+    gramoSoluto.value = "";
+    gramoSolvente.value = "";
+    gramoSolucion.value = "";
+    porcentajePPSoluto.value = "";
+    porcentajePPSolvente.value = ""; 
+}
