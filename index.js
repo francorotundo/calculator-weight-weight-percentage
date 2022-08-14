@@ -1,6 +1,6 @@
-//MAQUETACIÖN DE CALCULADORA DE PORCENTAJE PESO ENTRE PESO
+//LAYOUT OF WEIGHT BY WEIGHT PERCENTAGE CALCULATOR
 
-const containerPPP = document.querySelector('.WWP');
+const containerWWP = document.querySelector('.WWP');
 
 function renderCalcPPP() {
     const mainContainer = document.createElement("div");
@@ -58,10 +58,12 @@ function renderCalcPPP() {
     form.append(label1, input1, label2, input2, label3, input3, label4, input4, label5, input5, btnContainer);
     mainContainer.append(title, form);
 
-    containerPPP.appendChild(mainContainer);
+    containerWWP.appendChild(mainContainer);
 }
 
 renderCalcPPP()
+
+//Calculation logic
 
 const btn = document.querySelector(".calcular");
 
